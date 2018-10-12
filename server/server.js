@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const passport = require('passport')
 const bodyParser = require('body-parser');
 
-const db = require('./config/keys').mongoURI
+const db = process.env.mongoURI
 
 const exercise = require('./routes/api/exercise.js');
 const profile = require('./routes/api/profile.js');
@@ -11,7 +11,7 @@ const login = require('./routes/api/user.js')
 
 const app = express();
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT
 
 //use middleware
 app.use(bodyParser.urlencoded({extended: false}))
