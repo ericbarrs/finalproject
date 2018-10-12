@@ -13,6 +13,8 @@ const app = express();
 
 const port = process.env.PORT
 
+
+//app.use(express.static("public"))
 //use middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());

@@ -7,7 +7,7 @@ export default class WorkoutPlan extends React.Component {
 
   render() {
     return (
-      <div className="Main">
+      <div className="workoutPlan">
         <Header />
       </div>
     );

@@ -1,7 +1,9 @@
 html, body, #root, .App, .Main{
   background-color: beige;
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
+  margin: 0;
 }
 .cards{
   display: flex;
@@ -37,10 +39,33 @@ html, body, #root, .App, .Main{
 }
 
 .inputMain{
-  padding: 15%;
+  background-image: url("./img/img0.jpeg");
+  height: 100%;
+  width: 100%;
+  padding-top: 15%;
   text-align: center;
 }
 .CreateMain{
-  padding: 10%;
+  background-image: url("./img/img4.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 96vh;
+  width: 100%;
   text-align: center;
+}
+
+.mainPage{
+  background-image: url("./img/img0.jpeg");
+  height: 100%;
+  width: 100%;
+}
+
+.workoutPlan{
+  background-image: url("./img/img1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
 }

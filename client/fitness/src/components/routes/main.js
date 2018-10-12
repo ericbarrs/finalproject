@@ -8,9 +8,11 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className="Main">
+      <div className='mainPage'>
       <Header/>
       <Input />
       <Cards />
+      </div>
       </div>
     );
   }

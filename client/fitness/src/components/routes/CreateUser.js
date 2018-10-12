@@ -65,7 +65,7 @@ export default class Login extends React.Component {
         <div className="CreateUser">
           <LoginHeader />
           <div className="CreateMain">
-          <div>
+          <div style={{paddingTop:'10%'}}>
           <TextField
             onChange={(e)=>{this.UserInput(e)}}
             id = "email"
