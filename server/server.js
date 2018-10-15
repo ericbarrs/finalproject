@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport')
 const bodyParser = require('body-parser');
+const keys = require('./config/keys')
 
-const db = process.env.mongoURI
+const db = process.env.mongoURI || keys.mongoURI
 
 const exercise = require('./routes/api/exercise.js');
 const profile = require('./routes/api/profile.js');
@@ -11,10 +12,10 @@ const login = require('./routes/api/user.js')
 
 const app = express();
 
-const port = process.env.PORT
+const port = process.env.PORT || keys.port
 
 
-//app.use(express.static("public"))
+app.use(express.static("public"))
 //use middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());

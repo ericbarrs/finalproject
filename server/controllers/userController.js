@@ -2,9 +2,11 @@ const User = require('../models/user')
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs') 
 const jwt = require('jsonwebtoken')
+const keys = require('../config/keys')
 
 //load input Vaildation 
 const validateRegisterInput = require('../validation/register')
+const validateLogonInput = require('../validation/login')
 
 module.exports.list = function(req,res){
   User.find({}, (err,data)=>{
@@ -55,6 +57,11 @@ module.exports.create = function(req,res){
 }
 
 module.exports.logon = function(req,res){
+  const { errors, isValid } = validateLogonInput(req.body)
+  
+  if(!isValid){
+    return res.status(400).json(errors)
+  }
   const email = req.body.email;
   const password = req.body.password
   User.findOne({email})
@@ -73,14 +80,14 @@ module.exports.logon = function(req,res){
 
         //Sign token
         //expires in seconds 
-        jwt.sign(payload, process.env.secretOrKey, {expiresIn: 3600 }, (err, token)=>{
+        jwt.sign(payload, process.env.secretOrKey || keys.secretOrKey, {expiresIn: 3600 }, (err, token)=>{
           res.json({
           success:true,
           token: 'Bearer ' + token
           })
         })
       }else{
-        return res.status(400).json({password: "password incorrect"})
+        return res.status(400).json({success:false, password: "password incorrect"})
       }
     })
   })

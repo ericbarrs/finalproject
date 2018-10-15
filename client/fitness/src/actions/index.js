@@ -1,6 +1,10 @@
 export function loadExercise(){
     return function(dispatch){
-        fetch('/exercise')
+        fetch('/exercise',{
+            headers:{
+            'Authorization': localStorage.getItem("Authorization")
+            }
+        })
         .then(res => res.json())
         .then(exercise =>{ 
             const listExercise = exercise.map(function(value){
@@ -47,9 +51,34 @@ export function exerciseDeleted(Data){
     }
 }
 function DeleteExercise(deletedExercise){
-    console.log(deletedExercise)
     return {
         type: "DELETE_EXERCISE",
         value: deletedExercise
+    }
+}
+
+export function login(loginData){
+    return function(dispatch){
+        fetch('/login' , {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginData)
+          })
+          .then(res => res.json())
+          .then(data =>{
+              if(data.token !== undefined){
+                localStorage.setItem('Authorization', data.token)
+                dispatch(verifyLogin(data))
+              }else{
+                data.success = false
+                dispatch(verifyLogin(data))
+              }
+            })      
+    }
+}
+function verifyLogin(data){
+    return{
+        type: "isAuthenicated",
+        value: data
     }
 }

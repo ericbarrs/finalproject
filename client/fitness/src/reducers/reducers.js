@@ -16,9 +16,15 @@ function exercise(state = [] , action){
   function WorkoutPlan(state = {}, action){
     return state
   }
+  function isAuthenicated(state = false, action){
+    if(action.type === "isAuthenicated"){
+      return state = action.value.success
+    }
+    return state
+  }
   
 const rootReducer = combineReducers({
-  exercise, WorkoutPlan
+  exercise, WorkoutPlan, isAuthenicated
 })
 
 export default rootReducer
